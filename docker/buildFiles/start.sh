@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/sh
 
 SERVER_ID="$1"
 

@@ -82,7 +82,7 @@ services:
       - CRAFTY_IP=crafty                        # name of crafty container in network
       - CRAFTY_PORT=8443                        # port of crafty container in network
       - CRAFTY_API_KEY=${lazymc_CRAFTY_API_KEY} # ApiKey with COMMANDS acces
-      - lazymc_PUBLIC_IP=lazymc_crafty4         # name of this container (lazymc_crafty4) in network
+      - LAZYMC_PUBLIC_IP=lazymc_crafty4         # name of this container (lazymc_crafty4) in network
         # SERVER 1
       - lazymc_ENABLE_UUID1=true                # Replace UUID1 with UUID of server in crafty
       - lazymc_PUBLIC_PORT_UUID1=25565          # Replace UUID1 with UUID of server in crafty
@@ -137,7 +137,7 @@ services:
       - CRAFTY_IP=crafty                        # name of crafty container in network
       - CRAFTY_PORT=8443                        # port of crafty container in network
       - CRAFTY_API_KEY=${lazymc_CRAFTY_API_KEY} # ApiKey with COMMANDS acces
-      - lazymc_PUBLIC_IP=lazymc_crafty4         # name of this container (lazymc_crafty4) in network
+      - LAZYMC_PUBLIC_IP=lazymc_crafty4         # name of this container (lazymc_crafty4) in network
         # SERVER 1
       - lazymc_PUBLIC_PORT_UUID1=25565          # End of VAR is UUID of server in crafty
       - lazymc_SERVER_VERSION_UUID1=1.21.10     # End of VAR is UUID of server in crafty

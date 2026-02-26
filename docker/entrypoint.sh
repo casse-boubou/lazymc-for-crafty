@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 set -e # Exit immediately if a command exits with a non-zero status.
 ## INIT
 # Set list of pid for each sub-process
@@ -20,8 +20,9 @@ trap term_handler TERM INT
 # Create liste of servers in crafty
 serverDir=/crafty/servers
 serversListe=
-for server in $(ls ${serverDir}); do
-    serversListe="$serversListe $server"
+for server in "${serverDir}"/*; do
+    [ -d "$server" ] || continue
+    serversListe="$serversListe ${server##*/}"
 done
 
 
@@ -34,7 +35,7 @@ for dir in ${serversListe}; do
     if [ -n "$value_enable" ] && [ "$value_enable" = "true" ]; then
 
         cp /lazymc/lazymc-template.toml /lazymc/lazymc-${dir}.toml
-        sed -i -e "s/REPLACE_PUBLIC_IP/$lazymc_PUBLIC_IP/" /lazymc/lazymc-${dir}.toml
+        sed -i -e "s/REPLACE_PUBLIC_IP/$LAZYMC_PUBLIC_IP/" /lazymc/lazymc-${dir}.toml
         sed -i -e "s/REPLACE_SERVER_IP/$CRAFTY_IP/" /lazymc/lazymc-${dir}.toml
         sed -i -e "s/REPLACE_DIRECTORY/\/crafty\/servers\/${dir}/" /lazymc/lazymc-${dir}.toml
         sed -i -e "s/REPLACE_COMMAND/sh \/lazymc\/start.sh ${dir}/" /lazymc/lazymc-${dir}.toml
