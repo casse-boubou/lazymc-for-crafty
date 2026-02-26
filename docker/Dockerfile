@@ -5,14 +5,14 @@ FROM alpine:3.23 as builder
 # Update index, install app
 RUN echo "Installing base packages" \
     && apk --update --no-cache add \
-    cargo \
-    git
+    cargo=1.91.1-r0 \
+    git=2.52.0-r0
 ARG LAZYMC_VERSION
 RUN wget --no-verbose https://github.com/timvisee/lazymc/archive/refs/tags/v${LAZYMC_VERSION}.zip && \
     unzip v${LAZYMC_VERSION}.zip && \
-    mv lazymc-${LAZYMC_VERSION} lazymc && \
-    cd lazymc && \
-    cargo build --release
+    mv lazymc-${LAZYMC_VERSION} lazymc
+WORKDIR /lazymc
+RUN cargo build --release
 
 
 ##################################
