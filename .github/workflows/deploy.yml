@@ -109,6 +109,8 @@ jobs:
           with:
             context: ./docker
             file: ./docker/Dockerfile
+            build-args: |
+              LAZYMC_VERSION:0.2.11
             push: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
             tags: ${{ steps.meta.outputs.tags }}
             labels: ${{ steps.meta.outputs.labels }}
