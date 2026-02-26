@@ -1,0 +1,69 @@
+# lazymc configuration
+#
+# You must configure your server directory and start command, see:
+# - server.directory
+# - server.command
+#
+# All defaults are commented out, change it if you desire.
+# You can probably leave the rest as-is.
+#
+# You may generate a new configuration with: lazymc config generate
+# Or find the latest at: https://git.io/J1Fvq
+
+[public]
+# Public address. IP and port users connect to.
+# Shows sleeping status, starts server on connect, and proxies to server.
+address = "REPLACE_PUBLIC_IP:REPLACE_PUBLIC_PORT"
+
+# Server version & protocol hint.
+# Sent to clients until actual server version is known.
+# See: https://git.io/J1Fvx
+version = "REPLACE_VERRSION"
+protocol = REPLACE_PROTOCOLE
+
+[server]
+# Server address. Internal IP and port of server started by lazymc to proxy to.
+# Port must be different from public port.
+address = "REPLACE_SERVER_IP:REPLACE_SERVER_PORT"
+
+# Server directory, defaults to current directory.
+directory = "REPLACE_DIRECTORY"
+
+# Command to start the server.
+# Warning: if using a bash script read: https://git.io/JMIKH
+command = "REPLACE_COMMAND"
+
+# Freeze the server process instead of restarting it when no players online, making it resume faster.
+# Only works on Unix (Linux or MacOS), ignored on Windows
+freeze_process = false      # configure like this to avoir "Could not send unfreeze signal to server process, PID unknown"
+
+
+# To wake server, user must be in server whitelist if enabled on server.
+wake_whitelist = true
+
+# Block banned IPs as listed in banned-ips.json in server directory.
+block_banned_ips = true
+
+# Drop connections from banned IPs.
+# Banned IPs won't be able to ping or request server status.
+# On connect, clients show a 'Disconnected' message rather than the ban reason.
+drop_banned_ips = false
+
+[time]
+# Sleep after number of seconds.
+sleep_after = 300
+
+[motd]
+# MOTD, shown in server browser.
+sleeping = "§4☠ Le serveur est en veille\n§6☻ Connectez-vous pour le demarrer"
+starting = "§2☻ Le serveur démarre...\n§7⌛ Veuillez patienter..."
+stopping = "☠ Le serveur va se mettre en veille...\n⌛ Veuillez patienter..."
+
+[join.kick]
+starting = "§2Le serveur démarre...\n\n§6Cela peut prendre un petit temps.\n\nVeuillez essayer de vous reconnecter dans une minute."
+stopping = "Le serveur va se mettre en veille... §7☠§r\n\nVeuillez essayer de vous reconnecter dans une minute pour le réveiller."
+
+[config]
+# lazymc version this configuration is for.
+# Don't change unless you know what you're doing.
+version = "0.2.11"

@@ -1,0 +1,46 @@
+services:
+  # Your existing crafty instance
+  crafty:
+      container_name: crafty
+      image: registry.gitlab.com/crafty-controller/crafty-4:latest
+      restart: always
+      environment:
+          - TZ=Etc/UTC
+      ports:
+          - "8443:8443" # HTTPS PANEL ACCESS
+          - "8123:8123" # DYNMAP (optional)
+        #   MC SERV PORT RANGE is not need here because we proxy it in lazymc_crafty4
+        #   - "25500-25600:25500-25600" # MC SERV PORT RANGE
+      volumes:
+          - ./docker/backups:/crafty/backups
+          - ./docker/logs:/crafty/logs
+          - ./docker/servers:/crafty/servers
+          - ./docker/config:/crafty/app/config
+          - ./docker/import:/crafty/import
+
+
+  lazymc_crafty4:
+    container_name: lazymc_crafty4
+    image: ghcr.io/casse-boubou/lazymc-for-crafty:latest
+    environment:
+      - CRAFTY_IP=crafty                        # name of crafty container in network
+      - CRAFTY_PORT=8443                        # port of crafty container in network
+      - CRAFTY_API_KEY=${lazymc_CRAFTY_API_KEY} # ApiKey with COMMANDS acces
+      - lazymc_PUBLIC_IP=lazymc_crafty4         # name of this container (lazymc_crafty4) in network
+        # SERVER 1
+      - lazymc_ENABLE_UUID1=true                # Replace UUID1 with UUID of server in crafty
+      - lazymc_PUBLIC_PORT_UUID1=25565          # Replace UUID1 with UUID of server in crafty
+      - lazymc_SERVER_VERSION_UUID1=1.21.10     # Replace UUID1 with UUID of server in crafty
+      - lazymc_PROTOCOLE_VERSION_UUID1=773      # Replace UUID1 with UUID of server in crafty
+        # SERVER 2
+      - lazymc_ENABLE_UUID2=true
+      - lazymc_PUBLIC_PORT_UUID2=25566
+      - lazymc_SERVER_VERSION_UUID2=1.21.11
+      - lazymc_PROTOCOLE_VERSION_UUID2=774
+        # SERVER X...
+    volumes:
+      - /path/to/your/crafty/servers:/crafty/servers
+    ports:
+      - 25565:25565 # Minecraft servers 1
+      - 25566:25566 # Minecraft servers 2
+      - ....:....   # Minecraft servers X...
