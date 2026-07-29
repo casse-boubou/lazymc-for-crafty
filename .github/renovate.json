@@ -1,14 +1,8 @@
 {
   
-  // "extends": [
-  //   "github>casse-boubou//.github//.github/renovate.json"
-  // ],
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "labels": ["dependencies"],
-  "timezone": "Europe/Paris",
-  "rebaseWhen": "auto",
-  "dependencyDashboardLabels": ["dependencies"],
+  "extends": [
+    "github>casse-boubou//.github//.github/renovate.json"
+  ],
   "customManagers": [
     {
       "customType": "regex",
@@ -44,35 +38,10 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["docker"],
-      "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "docker {{packageName}} image"
-    },
-    {
       "matchDatasources": ["github-releases"],
       "matchDepNames": ["timvisee/lazymc"],
       "commitMessagePrefix": "✨",
       "commitMessageTopic": "LazyMC"
-    },
-    {
-      "matchDatasources": ["repology"],
-      "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "{{packageName}}",
-      "groupName": "internal packages"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "⬆️ MAJOR",
-      "commitMessageTopic": "{{depName}}"
-    },
-    {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "{{depName}}",
-      "groupName": "minor and patch",
-      "automerge": true
     }
   ]
 }
