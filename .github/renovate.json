@@ -45,7 +45,7 @@
     {
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "App Base Image"
+      "commitMessageTopic": "docker {{depNameTemplate}} Image"
     },
     {
       "matchDatasources": ["github-releases"],
