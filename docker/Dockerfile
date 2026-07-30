@@ -4,7 +4,7 @@ ARG ALPINE_BASE_IMAGE_VERSION="3.24"
 ####################
 FROM alpine:${ALPINE_BASE_IMAGE_VERSION} AS builder
 # Update index, install app
-ARG LAZYMC_VERSION="v0.2.10"
+ARG LAZYMC_VERSION="v0.2.11"
 RUN echo "Installing base packages" \
     && apk --update --no-cache add \
     cargo=1.91.1-r2 \
