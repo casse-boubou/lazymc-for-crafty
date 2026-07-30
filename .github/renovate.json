@@ -13,7 +13,7 @@
       "packageNameTemplate": "timvisee/lazymc",
       "depNameTemplate": "LazyMC",
       "matchStrings": [
-        "(ARG)\\s(LAZYMC.*_VERSION)=\"(?<currentValue>v?[0-9]+\\.[0-9]+(\\.[0-9]+){0,1})\"\\n{0,1}"
+        "(ARG)\\s(LAZYMC.*_VERSION)=\"(?<currentValue>v?[0-9]+\\.[0-9]+(\\.[0-9]+){0,1})\"\\n"
       ],
       "versioningTemplate": "loose"
     },
@@ -24,7 +24,7 @@
       "packageNameTemplate": "alpine_3_24/{{package}}",
       "depNameTemplate": "{{package}}",
       "matchStrings": [
-        "\\s\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s+"
+        "\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s"
       ],
       "versioningTemplate": "loose"
     }
