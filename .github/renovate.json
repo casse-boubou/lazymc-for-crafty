@@ -41,13 +41,13 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["major"],
       "commitMessagePrefix": "⬆️ MAJOR",
-      "commitMessageTopic": "github-actions {{depName}}"
+      "commitMessageTopic": "github-actions {{packageName}}"
     },
     {
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch"],
       "commitMessagePrefix": "⬆️",
-      "commitMessageTopic": "github-actions {{depName}}",
+      "commitMessageTopic": "github-actions {{packageName}}",
       "groupName": "minor and patch",
       "automerge": true
     },
