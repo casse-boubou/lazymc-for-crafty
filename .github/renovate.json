@@ -27,7 +27,7 @@
   ],
   "packageRules": [
     {
-      "matchManagers": ["regex"],
+      "matchManagers": ["custom.regex"],
       "matchDatasources": ["github-tags"],
       "matchDepNames": ["LazyMC"],
       "commitMessagePrefix": "✨",
