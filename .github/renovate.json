@@ -31,7 +31,7 @@
   ],
   "packageRules": [
     {
-      "matchManagers": ["custom"],
+      "matchManagers": ["regex"],
       "matchDatasources": ["github-tags"],
       "matchDepNames": ["LazyMC"],
       "commitMessagePrefix": "✨",
@@ -52,13 +52,13 @@
       "automerge": true
     },
     {
-      "matchManagers": ["docker"],
+      "matchManagers": ["dockerfile"],
       "matchDatasources": ["docker"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "docker {{packageName}} image"
     },
     {
-      "matchManagers": ["custom"],
+      "matchManagers": ["regex"],
       "matchDatasources": ["repology"],
       "commitMessagePrefix": "⬆️",
       "commitMessageTopic": "{{depName}}",
