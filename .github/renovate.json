@@ -1,25 +1,30 @@
 {
-  "extends": ["github>casse-boubou/.github//.github/renovate.json"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Europe/Paris",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "prCreation": "not-pending",
+  "rebaseWhen": "auto",
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["//Dockerfile$/"],
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "datasourceTemplate": "github-tags",
       "packageNameTemplate": "timvisee/lazymc",
       "depNameTemplate": "LazyMC",
       "matchStrings": [
-        "(ARG)\\s(lazymc.*_VERSION)=\"(?<currentValue>v?[0-9]+\\.[0-9]+(\\.[0-9]+){0,1})\"\\n{0,1}"
+        "(ARG)\\s(LAZYMC.*_VERSION)=\"(?<currentValue>v?[0-9]+\\.[0-9]+(\\.[0-9]+){0,1})\"\\n{0,1}"
       ],
       "versioningTemplate": "loose"
     },
     {
       "customType": "regex",
-      "managerFilePatterns": ["//Dockerfile$/"],
+      "managerFilePatterns": ["/(^|/)Dockerfile$/"],
       "datasourceTemplate": "repology",
       "packageNameTemplate": "alpine_3_24/{{package}}",
       "depNameTemplate": "{{package}}",
       "matchStrings": [
-        "\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s{0,1}"
+        "\\s\\s(?<package>[a-z0-9][a-z0-9-_]+)=(?<currentValue>[a-z0-9-_.]+)\\s+"
       ],
       "versioningTemplate": "loose"
     }
@@ -31,6 +36,33 @@
       "matchDepNames": ["LazyMC"],
       "commitMessagePrefix": "✨",
       "commitMessageTopic": "{{depName}}"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "⬆️ MAJOR",
+      "commitMessageTopic": "github-actions {{depName}}"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "github-actions {{depName}}",
+      "groupName": "minor and patch",
+      "automerge": true
+    },
+    {
+      "matchManagers": ["docker"],
+      "matchDatasources": ["docker"],
+      "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "docker {{packageName}} image"
+    },
+    {
+      "matchManagers": ["custom"],
+      "matchDatasources": ["repology"],
+      "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "{{depName}}",
+      "groupName": "internal packages"
     }
   ]
 }
