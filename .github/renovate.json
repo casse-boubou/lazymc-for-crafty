@@ -47,6 +47,7 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch"],
       "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "github-actions {{packageName}}",
       "groupName": "minor and patch",
       "automerge": true
     },
@@ -60,6 +61,7 @@
       "matchManagers": ["regex"],
       "matchDatasources": ["repology"],
       "commitMessagePrefix": "⬆️",
+      "commitMessageTopic": "{{depName}}",
       "groupName": "internal packages"
     }
   ]
