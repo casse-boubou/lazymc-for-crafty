@@ -2,7 +2,7 @@ services:
   # Your existing crafty instance
   crafty:
       container_name: crafty
-      image: registry.gitlab.com/crafty-controller/crafty-4:latest
+      image: registry.gitlab.com/crafty-controller/crafty-4:v4.10.8
       restart: always
       environment:
           - TZ=Etc/UTC
@@ -21,7 +21,7 @@ services:
 
   lazymc_crafty4:
     container_name: lazymc_crafty4
-    image: ghcr.io/casse-boubou/lazymc-for-crafty:latest
+    image: ghcr.io/casse-boubou/lazymc-for-crafty:v0.0.1
     environment:
       - CRAFTY_IP=crafty                        # name of crafty container in network
       - CRAFTY_PORT=8443                        # port of crafty container in network
