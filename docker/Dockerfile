@@ -37,5 +37,7 @@ RUN chmod +x /entrypoint.sh
 ##################################
 ## PRODUCTION MODE
 ##################################
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD pgrep -f "lazymc --config" > /dev/null || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD ["pgrep", "-f", "'lazymc --config'", ">", "/dev/null", "||", "exit 1"]
+
 ENTRYPOINT ["sh", "/entrypoint.sh"]
