@@ -16,6 +16,9 @@ term_handler() {
 trap term_handler TERM INT
 
 
+echo "LazyMC_For_Crafty version: ${CONTAINER_BUILD_VERSION}"
+
+
 
 # Create liste of servers in crafty
 serverDir=/crafty/servers

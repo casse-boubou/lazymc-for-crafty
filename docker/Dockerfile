@@ -20,6 +20,8 @@ RUN cargo build --release
 ## LAZYMC x CRAFTY4
 ##################################
 FROM alpine:${ALPINE_BASE_IMAGE_VERSION} AS runner
+ARG CONTAINER_BUILD_VERSION
+ENV CONTAINER_BUILD_VERSION=${CONTAINER_BUILD_VERSION}
 # Copy exec and dependencies
 COPY --from=builder /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so.1
 COPY --from=builder /lazymc/target/release/lazymc /usr/local/bin/lazymc
