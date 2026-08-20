@@ -37,11 +37,11 @@ for dir in ${serversListe}; do
     value_enable=$(printenv "$varName_enable" 2>/dev/null || true)
     if [ -n "$value_enable" ] && [ "$value_enable" = "true" ]; then
 
-        cp /lazymc/lazymc-template.toml /lazymc/lazymc-${dir}.toml
-        sed -i -e "s/REPLACE_PUBLIC_IP/$LAZYMC_PUBLIC_IP/" /lazymc/lazymc-${dir}.toml
-        sed -i -e "s/REPLACE_SERVER_IP/$CRAFTY_IP/" /lazymc/lazymc-${dir}.toml
-        sed -i -e "s/REPLACE_DIRECTORY/\/crafty\/servers\/${dir}/" /lazymc/lazymc-${dir}.toml
-        sed -i -e "s/REPLACE_COMMAND/sh \/lazymc\/start.sh ${dir}/" /lazymc/lazymc-${dir}.toml
+        cp /lazymc/lazymc-template.toml /lazymc/lazymc-"${dir}".toml
+        sed -i -e "s/REPLACE_PUBLIC_IP/$LAZYMC_PUBLIC_IP/" /lazymc/lazymc-"${dir}".toml
+        sed -i -e "s/REPLACE_SERVER_IP/$CRAFTY_IP/" /lazymc/lazymc-"${dir}".toml
+        sed -i -e "s/REPLACE_DIRECTORY/\/crafty\/servers\/${dir}/" /lazymc/lazymc-"${dir}".toml
+        sed -i -e "s/REPLACE_COMMAND/sh \/lazymc\/start.sh ${dir}/" /lazymc/lazymc-"${dir}".toml
     fi
 done
 
@@ -57,7 +57,7 @@ for dir in ${serversListe}; do
 
         # Assigne unique port
         BASE_PORT=$((BASE_PORT+1))
-        sed -i -e "s/REPLACE_SERVER_PORT/$BASE_PORT/" /lazymc/lazymc-${dir}.toml
+        sed -i -e "s/REPLACE_SERVER_PORT/$BASE_PORT/" /lazymc/lazymc-"${dir}".toml
 
         # Assigne unique public port
         varName_publicPORT="lazymc_PUBLIC_PORT_${dir}"
@@ -65,7 +65,7 @@ for dir in ${serversListe}; do
         value_publicPORT=$(printenv "$varName_publicPORT")
         # If variable exist in ENV exist then
         if [ -n "$value_publicPORT" ]; then
-            sed -i -e "s/REPLACE_PUBLIC_PORT/$value_publicPORT/" /lazymc/lazymc-${dir}.toml
+            sed -i -e "s/REPLACE_PUBLIC_PORT/$value_publicPORT/" /lazymc/lazymc-"${dir}".toml
         fi
 
         # Assigne unique server version
@@ -74,7 +74,7 @@ for dir in ${serversListe}; do
         value_serverVersion=$(printenv "$varName_serverVersion")
         # If variable exist in ENV exist then
         if [ -n "$value_serverVersion" ]; then
-            sed -i -e "s/REPLACE_VERRSION/$value_serverVersion/" /lazymc/lazymc-${dir}.toml
+            sed -i -e "s/REPLACE_VERRSION/$value_serverVersion/" /lazymc/lazymc-"${dir}".toml
         fi
 
         # Assigne unique server protocole
@@ -83,7 +83,7 @@ for dir in ${serversListe}; do
         value_serverProtocole=$(printenv "$varName_serverProtocole")
         # If variable exist in ENV exist then
         if [ -n "$value_serverProtocole" ]; then
-            sed -i -e "s/REPLACE_PROTOCOLE/$value_serverProtocole/" /lazymc/lazymc-${dir}.toml
+            sed -i -e "s/REPLACE_PROTOCOLE/$value_serverProtocole/" /lazymc/lazymc-"${dir}".toml
         fi
     fi
 done
@@ -97,7 +97,7 @@ for dir in ${serversListe}; do
     value_enable=$(printenv "$varName_enable" 2>/dev/null || true)
     if [ -n "$value_enable" ] && [ "$value_enable" = "true" ]; then
 
-        lazymc --config /lazymc/lazymc-${dir}.toml &
+        lazymc --config /lazymc/lazymc-"${dir}".toml &
         pids="$pids $!"
     fi
 done
