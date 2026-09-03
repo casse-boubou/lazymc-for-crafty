@@ -20,7 +20,38 @@ echo "LazyMC_For_Crafty version: ${CONTAINER_BUILD_VERSION}"
 
 
 
-# Create liste of servers in crafty
+##################################
+## CHECK IF ENVIRONMENT VARIABLES ARE CONFIGURED
+##################################
+echo "Initialization.."
+EMPTY_ENV=""
+if [ -z "$CRAFTY_IP" ]; then
+    EMPTY_ENV=$EMPTY_ENV"CRAFTY_IP "
+fi
+if [ -z "$CRAFTY_PORT" ]; then
+    EMPTY_ENV=$EMPTY_ENV"CRAFTY_PORT "
+fi
+if [ -z "$CRAFTY_API_KEY" ]; then
+    EMPTY_ENV=$EMPTY_ENV"CRAFTY_API_KEY "
+fi
+if [ -z "$LAZYMC_PUBLIC_IP" ]; then
+    EMPTY_ENV=$EMPTY_ENV"LAZYMC_PUBLIC_IP "
+fi
+
+for var in $EMPTY_ENV; do
+    echo "Environment variable $var is not assigned. Please configure it before restarting the container."
+done
+if ! [ -z "$EMPTY_ENV" ]; then
+    echo "Shutting down.."
+    sleep 5
+    exit 1
+fi
+
+
+
+##################################
+## CREATE LIST OF SERVERS IN CRAFTY
+##################################
 serverDir=/crafty/servers
 serversListe=
 for server in "${serverDir}"/*; do
@@ -30,7 +61,9 @@ done
 
 
 
-# Create lazymc conf for each server
+##################################
+## CREATE LAZYMC CONF FOR EACH SERVER
+##################################
 for dir in ${serversListe}; do
     # Check if the enable variable exists AND if it is true
     varName_enable="lazymc_ENABLE_${dir}"
@@ -47,7 +80,9 @@ done
 
 
 
-# Edit conf with unique value for each server
+##################################
+## EDIT CONF WITH UNIQUE VALUE FOR EACH SERVER
+##################################
 BASE_PORT=25445
 for dir in ${serversListe}; do
     # Check if the enable variable exists AND if it is true
@@ -90,7 +125,10 @@ done
 
 
 
-# Launch one lazymc subprocess by server
+##################################
+## START ONE LAZYMC SUBPROCESS BY SERVER
+##################################
+echo "Initialization complete"
 for dir in ${serversListe}; do
     # Check if the enable variable exists AND if it is true
     varName_enable="lazymc_ENABLE_${dir}"
