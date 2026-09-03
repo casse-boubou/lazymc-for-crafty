@@ -1,4 +1,6 @@
+# ARG necessaire pour la version des app FROM
 ARG ALPINE_BASE_IMAGE_VERSION="3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b"
+
 ####################
 # BUILD LAZYMC
 ####################
@@ -32,8 +34,8 @@ COPY ./buildFiles/lazymc-template.toml ./buildFiles/start.sh /lazymc/
 WORKDIR /lazymc
 
 # Copy entrypoint
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 
 ##################################
@@ -42,4 +44,4 @@ RUN chmod +x /entrypoint.sh
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
     CMD ["pgrep", "-f", "'lazymc --config'", ">", "/dev/null", "||", "exit 1"]
 
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
