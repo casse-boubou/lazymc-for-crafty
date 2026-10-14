@@ -17,13 +17,12 @@ trap term_handler TERM INT
 
 
 echo "LazyMC_For_Crafty version: ${CONTAINER_BUILD_VERSION}"
-
-
-
-##################################
-## CHECK IF ENVIRONMENT VARIABLES ARE CONFIGURED
-##################################
 echo "Initialization.."
+
+
+##################################
+## CHECK IF REQUIRED ENVIRONMENT VARIABLES ARE CONFIGURED
+##################################
 EMPTY_ENV=""
 if [ -z "$CRAFTY_IP" ]; then
     EMPTY_ENV=$EMPTY_ENV"CRAFTY_IP "
