@@ -35,8 +35,10 @@
       "matchManagers": ["custom.regex"],
       "matchDatasources": ["github-tags"],
       "matchDepNames": ["LazyMC"],
+      "addLabels": ["app"],
       "commitMessagePrefix": "✨",
-      "commitMessageTopic": "{{depName}}"
+      "commitMessageTopic": "app {{depName}}",
+      "groupName": null
     }
   ]
 }
