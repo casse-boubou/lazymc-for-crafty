@@ -39,6 +39,13 @@
       "commitMessagePrefix": "✨",
       "commitMessageTopic": "app {{depName}}",
       "groupName": null
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "matchDatasources": ["github-tags"],
+      "matchDepNames": ["LazyMC"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
     }
   ]
 }
