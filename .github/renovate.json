@@ -46,6 +46,12 @@
       "matchDepNames": ["LazyMC"],
       "matchUpdateTypes": ["patch"],
       "automerge": true
+    },
+    {
+      "matchManagers": ["docker-compose"],
+      "matchDatasources": ["docker"],
+      "matchFileNames": ["docker/docker-compose.yml"],
+      "automerge": true
     }
   ]
 }
