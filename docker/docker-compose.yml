@@ -21,7 +21,7 @@ services:
 
   lazymc_crafty4:
     container_name: lazymc_crafty4
-    image: ghcr.io/casse-boubou/lazymc-for-crafty:v1.0.2@sha256:733aeee892b83874bfd600d27d2c9c268ea53c6f186b12681c5385ecfc80f5d8
+    image: ghcr.io/casse-boubou/lazymc-for-crafty:v1.0.3@sha256:3c16a28c50478a8b1cae1ec75d7450b17af59f456d60b4257a9327bbf06566ff
     environment:
       - CRAFTY_IP=crafty                        # name of crafty container in network
       - CRAFTY_PORT=8443                        # port of crafty container in network
